@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | Aksvara Naturals | Premium Dry Fruits & Nuts</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .shop-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .shop-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .shop-header h1 {
+      font-size: 2.5rem;
+      color: #8E6D5F;
+      margin-bottom: 10px;
+    }
+
+    .shop-header p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .filters {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f8f5f0;
+      border-radius: 8px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filter-group label {
+      font-weight: 600;
+      color: #333;
+      font-size: 0.95rem;
+    }
+
+    .filter-group select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background: white;
+      cursor: pointer;
+    }
+
+    .sort-btn {
+      padding: 8px 15px;
+      background: #8E6D5F;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .sort-btn:hover {
+      background: #6d5348;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <!-- Contact Info Bar -->
+    <div class="contact-bar">
+      <div class="contact-info">
+        <span class="contact-item">📧 <a href="mailto:info@aksvara.com">info@aksvara.com</a></span>
+        <span class="divider">|</span>
+        <span class="contact-item">📞 <a href="tel:+919876543210">+91 9876543210</a></span>
+      </div>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank" title="Facebook" class="social-link">f</a>
+        <a href="https://instagram.com" target="_blank" title="Instagram" class="social-link">📷</a>
+      </div>
+    </div>
+    
+    <div class="top-bar">
+      Free Shipping on Orders Above ₹999 • Use Code AKSVARA15 for 15% Off
+    </div>
+    <nav>
+      <div class="logo">Aksvara Naturals</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="menu" id="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="index.html">Our Story</a></li>
+        <li><a href="cart.html">🛒 Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Shop Section -->
+  <div class="shop-container">
+    <div class="shop-header">
+      <h1>Our Premium Collection</h1>
+      <p>Handpicked & Farm-Fresh Nuts, Dried Fruits & Superfoods</p>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label for="categoryFilter">Category:</label>
+        <select id="categoryFilter" onchange="filterProducts()">
+          <option value="">All Products</option>
+          <option value="nuts">Nuts</option>
+          <option value="dried-fruits">Dried Fruits</option>
+          <option value="seeds">Seeds & Mix</option>
+          <option value="honey">Honey</option>
+          <option value="gifts">Gift Hampers</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="priceFilter">Price Range:</label>
+        <select id="priceFilter" onchange="filterProducts()">
+          <option value="">All Prices</option>
+          <option value="0-500">Up to ₹500</option>
+          <option value="500-1000">₹500 - ₹1000</option>
+          <option value="1000-2000">₹1000 - ₹2000</option>
+          <option value="2000">Above ₹2000</option>
+        </select>
+      </div>
+      <button class="sort-btn" onclick="sortByPrice()">Sort by Price ↕</button>
+    </div>
+
+    <!-- Category Sections View -->
+    <div id="categorySections">
+      <!-- Nuts Section -->
+      <section class="category-section" id="nutsSection">
+        <div class="category-header">
+          <h2>🥜 Premium Nuts</h2>
+          <p>Hand-picked, high-quality nuts sourced directly from orchards</p>
+        </div>
+        <div class="category-grid" id="nutsGrid"></div>
+      </section>
+
+      <!-- Dried Fruits Section -->
+      <section class="category-section" id="driedFruitsSection">
+        <div class="category-header">
+          <h2>🍑 Dried Fruits</h2>
+          <p>Natural, sun-dried fruits with no preservatives</p>
+        </div>
+        <div class="category-grid" id="driedFruitsGrid"></div>
+      </section>
+
+      <!-- Seeds & Mix Section -->
+      <section class="category-section" id="seedsSection">
+        <div class="category-header">
+          <h2>🌱 Seeds & Mixes</h2>
+          <p>Nutrient-rich seed blends and superfood mixes</p>
+        </div>
+        <div class="category-grid" id="seedsGrid"></div>
+      </section>
+
+      <!-- Honey Section -->
+      <section class="category-section" id="honeySection">
+        <div class="category-header">
+          <h2>🍯 Premium Honey</h2>
+          <p>Pure, natural honey with health benefits</p>
+        </div>
+        <div class="category-grid" id="honeyGrid"></div>
+      </section>
+
+      <!-- Gift Hampers Section -->
+      <section class="category-section gift-section" id="giftSection">
+        <div class="category-header gift-header">
+          <h2>🎁 Exquisite Gift Hampers</h2>
+          <p>Perfect for celebrations, festivals & corporate gifting</p>
+        </div>
+        <div class="category-grid" id="giftGrid"></div>
+      </section>
+    </div>
+
+    <!-- Fallback: Grid view for filtered results -->
+    <div class="product-grid" id="productGrid" style="display: none;">
+      <!-- Products will be loaded here by JavaScript on filter -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2026 Aksvara Naturals. All rights reserved.
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Product data
+    const products = [
+      {
+        id: 1,
+        name: "California Almonds",
+        category: "nuts",
+        price: 649,
+        originalPrice: 899,
+        image: "images/product/california-almonds.png",
+        description: "Premium Nuts • 500g • Grade A • Raw",
+        badge: "bestseller"
+      },
+      {
+        id: 2,
+        name: "Kashmiri Walnuts",
+        category: "nuts",
+        price: 799,
+        originalPrice: 1099,
+        image: "images/product/kashmiri-walnuts.png",
+        description: "Premium Nuts • 400g • Shelled • Organic",
+        badge: "limited"
+      },
+      {
+        id: 3,
+        name: "Organic Medjool Dates",
+        category: "dried-fruits",
+        price: 549,
+        originalPrice: 749,
+        image: "images/product/date.png",
+        description: "Dried Fruits • 500g • Imported • Seedless",
+        badge: null
+      },
+      {
+        id: 4,
+        name: "Iranian Pistachios",
+        category: "nuts",
+        price: 899,
+        originalPrice: 1199,
+        image: "images/product/iranian.png",
+        description: "Premium Nuts • 350g • Roasted • Lightly Salted",
+        badge: "discount"
+      },
+      {
+        id: 5,
+        name: "Afghani Figs",
+        category: "dried-fruits",
+        price: 499,
+        originalPrice: 699,
+        image: "images/product/afgani-figs.png",
+        description: "Dried Fruits • 300g • Sundried • Natural",
+        badge: "outofstock"
+      },
+      {
+        id: 6,
+        name: "Mixed Seeds",
+        category: "seeds",
+        price: 449,
+        originalPrice: 599,
+        image: "images/product/mixed-seeds.jpg",
+        description: "Seeds & Mix • 400g • 6-in-1 • Raw",
+        badge: null
+      },
+      {
+        id: 7,
+        name: "Jumbo Cashews",
+        category: "nuts",
+        price: 749,
+        originalPrice: 999,
+        image: "images/product/jumbo-cashews.jpg",
+        description: "Premium Nuts • 500g • W240 Grade • Whole",
+        badge: "bestseller"
+      },
+      {
+        id: 8,
+        name: "Natural Honey",
+        category: "honey",
+        price: 999,
+        originalPrice: 1499,
+        image: "images/product/natural-honey.jpg",
+        description: "Premium Honey • 1kg • Natural • Real honey",
+        badge: null
+      },
+      {
+        id: 9,
+        name: "Premium Gift Box",
+        category: "gifts",
+        price: 1999,
+        originalPrice: 2799,
+        image: "images/product/mixed-fruits.jpg",
+        description: "Royal Gift Hamper • 1kg • 8 Varieties • Premium Pack",
+        badge: "limited"
+      }
+    ];
+
+    // Display products
+    // Generate product card HTML
+    function createProductCardHTML(product) {
+      const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+      
+      // Generate badge HTML
+      let badgeHtml = '';
+      if (product.badge) {
+        const badgeTexts = {
+          bestseller: '★ Best Seller',
+          limited: '⏰ Limited Time',
+          discount: '50% OFF',
+          outofstock: 'Out of Stock'
+        };
+        badgeHtml = `<span class="product-badge ${product.badge}">${badgeTexts[product.badge]}</span>`;
+      }
+      
+      const disabledClass = product.badge === 'outofstock' ? 'disabled' : '';
+      const buttonText = product.badge === 'outofstock' ? 'Out of Stock' : 'Add to Cart';
+      const buttonDisabled = product.badge === 'outofstock' ? 'disabled' : '';
+      
+      return `
+        <div class="product-card ${disabledClass}" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+          ${badgeHtml}
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <span class="price">₹${product.price} <del>₹${product.originalPrice}</del> <span style="color: #d32f2f; font-weight: bold;">-${discount}%</span></span>
+          <button class="btn-add-to-cart" onclick="addToCart(${product.id}, '${product.name}', ${product.price})" ${buttonDisabled}>${buttonText}</button>
+        </div>
+      `;
+    }
+
+    // Display products by category sections
+    function displayProductsByCategory(productsToShow) {
+      const categorySections = document.getElementById('categorySections');
+      
+      // Category configuration
+      const categories = {
+        nuts: { id: 'nutsGrid', icon: '🥜' },
+        'dried-fruits': { id: 'driedFruitsGrid', icon: '🍑' },
+        seeds: { id: 'seedsGrid', icon: '🌱' },
+        honey: { id: 'honeyGrid', icon: '🍯' },
+        gifts: { id: 'giftGrid', icon: '🎁' }
+      };
+
+      // Clear all grids
+      Object.values(categories).forEach(cat => {
+        const grid = document.getElementById(cat.id);
+        if (grid) grid.innerHTML = '';
+      });
+
+      // Populate each category grid
+      productsToShow.forEach(product => {
+        const categoryId = categories[product.category]?.id;
+        if (categoryId) {
+          const grid = document.getElementById(categoryId);
+          if (grid) {
+            grid.innerHTML += createProductCardHTML(product);
+          }
+        }
+      });
+
+      // Hide category sections if no products
+      productsToShow.forEach(product => {
+        const sectionId = product.category === 'dried-fruits' ? 'driedFruitsSection' : 
+                         product.category === 'gifts' ? 'giftSection' :
+                         product.category + 'Section';
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const grid = section.querySelector('.category-grid');
+          section.style.display = grid && grid.innerHTML.trim() ? 'block' : 'none';
+        }
+      });
+
+      // Hide any sections that have no products
+      ['nutsSection', 'driedFruitsSection', 'seedsSection', 'honeySection', 'giftSection'].forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const grid = section.querySelector('.category-grid');
+          const hasProducts = grid && grid.innerHTML.trim().length > 0;
+          section.style.display = hasProducts ? 'block' : 'none';
+        }
+      });
+    }
+
+    function displayProducts(productsToShow) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+      
+      if (productsToShow.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No products found</p>';
+        return;
+      }
+
+      productsToShow.forEach(product => {
+        grid.innerHTML += createProductCardHTML(product);
+      });
+    }
+
+    // Filter products
+    function filterProducts() {
+      const category = document.getElementById('categoryFilter').value;
+      const priceRange = document.getElementById('priceFilter').value;
+
+      let filtered = products;
+
+      if (category) {
+        filtered = filtered.filter(p => p.category === category);
+      }
+
+      if (priceRange) {
+        const [min, max] = priceRange.split('-').map(Number);
+        if (max) {
+          filtered = filtered.filter(p => p.price >= min && p.price <= max);
+        } else {
+          filtered = filtered.filter(p => p.price >= min);
+        }
+      }
+
+      // If no filters applied, show category sections
+      const hasFilters = category || priceRange;
+      const categorySections = document.getElementById('categorySections');
+      const gridView = document.getElementById('productGrid');
+
+      if (!hasFilters) {
+        categorySections.style.display = 'block';
+        gridView.style.display = 'none';
+        displayProductsByCategory(filtered);
+      } else {
+        categorySections.style.display = 'none';
+        gridView.style.display = 'grid';
+        displayProducts(filtered);
+      }
+    }
+
+    // Sort by price
+    let sortedAsc = false;
+    function sortByPrice() {
+      const sorted = [...products].sort((a, b) => {
+        return sortedAsc ? b.price - a.price : a.price - b.price;
+      });
+      sortedAsc = !sortedAsc;
+      displayProducts(sorted);
+    }
+
+    // Load products on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      displayProductsByCategory(products);
+      updateCartCount();
+    });
+  </script>
+</body>
+</html>
