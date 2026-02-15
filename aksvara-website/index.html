@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aksvara Naturals | Premium Dry Fruits & Nuts</title>
+  
+  <!-- CSS Links -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Add any external CSS libraries if needed -->
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header>
+    <!-- Contact Info Bar -->
+    <div class="contact-bar">
+      <div class="contact-info">
+        <span class="contact-item">📧 <a href="mailto:info@aksvara.com">info@aksvara.com</a></span>
+        <span class="divider">|</span>
+        <span class="contact-item">📞 <a href="tel:+919876543210">+91 9876543210</a></span>
+      </div>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank" title="Facebook" class="social-link">f</a>
+        <a href="https://instagram.com" target="_blank" title="Instagram" class="social-link">📷</a>
+      </div>
+    </div>
+    
+    <div class="top-bar">
+      Free Shipping on Orders Above ₹999 • Use Code AKSVARA15 for 15% Off
+    </div>
+    <nav>
+      <div class="logo">Aksvara Naturals</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="menu" id="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="cart.html">🛒 Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="banner-title">
+      <h1>Handpicked & Farm-Fresh</h1>
+    </div>
+    <h2>Nature's Finest Dry Fruits Delivered Fresh</h2>
+    <p>Discover our curated collection of premium dry fruits, exotic nuts, and superfoods — sourced directly from the world's finest orchards and farms.</p>
+    <a href="#shop" class="btn">Explore Collection</a>
+    <a href="#story" class="btn-outline">Our Story</a>
+  </section>
+
+  <!-- Stats / Highlights -->
+  <section class="stats">
+    <div class="stat">
+      <h3>50+</h3>
+      <p>Premium Products</p>
+    </div>
+    <div class="stat">
+      <h3>10K+</h3>
+      <p>Happy Customers</p>
+    </div>
+    <div class="stat">
+      <h3>100%</h3>
+      <p>Natural & Pure</p>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="shop" class="products">
+    <h2>Premium Selection</h2>
+    <div class="product-grid">
+      <div class="product-card" data-id="1" data-name="California Almonds" data-price="649" data-badge="bestseller">
+        <span class="product-badge bestseller">★ Best Seller</span>
+        <img src="images\product\california-almonds.png" alt="California Almonds">
+        <h3>California Almonds</h3>
+        <p>Premium Nuts • 500g • Grade A • Raw</p>
+        <span class="price">₹649 <del>₹899</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(1, 'California Almonds', 649)">Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-id="2" data-name="Kashmiri Walnuts" data-price="799" data-badge="limited">
+        <span class="product-badge limited">⏰ Limited Time</span>
+        <img src="images\product\kashmiri-walnuts.png" alt="Kashmiri Walnuts">
+        <h3>Kashmiri Walnuts</h3>
+        <p>Premium Nuts • 400g • Shelled • Organic</p>
+        <span class="price">₹799 <del>₹1099</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(2, 'Kashmiri Walnuts', 799)">Add to Cart</button>
+      </div>
+      <div class="product-card" data-id="3" data-name="Organic Medjool Dates" data-price="549">
+        <img src="images\product\date.png" alt="Organic Medjool Dates">
+        <h3>Organic Medjool Dates</h3>
+        <p>Dried Fruits • 500g • Imported • Seedless</p>
+        <span class="price">₹549 <del>₹749</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(3, 'Organic Medjool Dates', 549)">Add to Cart</button>
+      </div>
+      <div class="product-card" data-id="4" data-name="Iranian Pistachios" data-price="899" data-badge="discount">
+        <span class="product-badge discount">50% OFF</span>
+        <img src="images/product/iranian.png" alt="Iranian Pistachios">
+        <h3>Iranian Pistachios</h3>
+        <p>Premium Nuts • 350g • Roasted • Lightly Salted</p>
+        <span class="price">₹899 <del>₹1199</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(4, 'Iranian Pistachios', 899)">Add to Cart</button>
+      </div>
+      <div class="product-card" data-id="5" data-name="Afghani Figs" data-price="499" data-badge="outofstock" class="disabled">
+        <span class="product-badge outofstock">Out of Stock</span>
+        <img src="images\product\afgani-figs.png" alt="Afghani Figs">
+        <h3>Afghani Figs</h3>
+        <p>Dried Fruits • 300g • Sundried • Natural</p>
+        <span class="price">₹499 <del>₹699</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(5, 'Afghani Figs', 499)" disabled>Out of Stock</button>
+      </div>
+      <div class="product-card" data-id="6" data-name="Mixed Seeds" data-price="449">
+        <img src="images\product\mixed-seeds.jpg" alt="Mixed Seeds">
+        <h3>Mixed Seeds</h3>
+        <p>Seeds & Mix • 400g • 6-in-1 • Raw</p>
+        <span class="price">₹449 <del>₹599</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(6, 'Mixed Seeds', 449)">Add to Cart</button>
+      </div>
+      <div class="product-card" data-id="7" data-name="Jumbo Cashews" data-price="749" data-badge="bestseller">
+        <span class="product-badge bestseller">★ Best Seller</span>
+        <img src="images\product\jumbo-cashews.jpg" alt="Jumbo Cashews">
+        <h3>Jumbo Cashews</h3>
+        <p>Premium Nuts • 500g • W240 Grade • Whole</p>
+        <span class="price">₹749 <del>₹999</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(7, 'Jumbo Cashews', 749)">Add to Cart</button>
+      </div>
+      <div class="product-card" data-id="8" data-name="Natural Honey" data-price="999">
+        <img src="images\product\natural-honey.jpg" alt="Natural Honey">
+        <h3>Natural Honey</h3>
+        <p>Premium Honey • 1kg • Natural • Real honey</p>
+        <span class="price">₹999 <del>₹1,499</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(8, 'Natural Honey', 999)">Add to Cart</button>
+     </div>
+       <!---<div class="product-card" data-id="9" data-name="Premium Gift Box" data-price="1999" data-badge="limited">
+        <span class="product-badge limited">⏰ Limited Time</span>
+        <img src="images\product\mixed-fruits.jpg" alt="Premium Gift Box">
+        <h3>Premium Gift Box</h3>
+        <p>Royal Gift Hamper • 1kg • 8 Varieties • Premium Pack</p>
+        <span class="price">₹1,999 <del>₹2,799</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(9, 'Premium Gift Box', 1999)">Add to Cart</button>
+      </div>-->
+    </div>
+ 
+
+  <!-- Gift Hampers Section -->
+  <section id="gifting" class="gifting-section">
+    <div class="gift-section-header">
+      <h2>🎁 Perfect Gifts for Every Occasion</h2>
+      <p>Celebrate festivals, weddings, corporate events, and special moments with our beautifully curated premium gift hampers. Each box is carefully selected with the finest dry fruits and nuts, elegantly packaged for that perfect gift.</p>
+    </div>
+    <div class="gift-products-grid">
+      <div class="product-card gift-product-card" data-id="9" data-name="Premium Gift Box" data-price="1999" data-badge="limited">
+        <span class="product-badge limited">⏰ Limited Time</span>
+        <img src="images\product\mixed-fruits.jpg" alt="Premium Gift Box">
+        <h3>Premium Gift Box</h3>
+        <p>Royal Gift Hamper • 1kg • 8 Varieties • Premium Pack</p>
+        <span class="price">₹1,999 <del>₹2,799</del></span>
+        <button class="btn-add-to-cart" onclick="addToCart(9, 'Premium Gift Box', 1999)">Add to Gift Box</button>
+      </div>
+    </div>
+    <div class="gift-cta">
+      <p><strong>Need a personalized gift?</strong> Contact us to create custom hampers for your special occasions!</p>
+      <a href="mailto:gifts@aksvara.com" class="btn">Request Custom Hamper</a>
+    </div>
+  </section>
+   </section>
+
+  <!-- Our Story Section -->
+  <section id="story" class="our-story">
+    <h2>From Nature's Lap, To Your Table</h2>
+    <p>Aksvara Naturals was born from a simple belief — everyone deserves access to pure, unprocessed dry fruits and nuts. We work directly with farmers across India, Afghanistan, Iran, and California to bring you the highest quality products.</p>
+    <ul>
+      <li>🌿 Direct Farm Sourcing</li>
+      <li>💫 No Preservatives</li>
+    </ul>
+    <a href="#shop" class="btn">Explore Our Products</a>
+  </section>
+
+  <!-- Newsletter / Subscription -->
+  <section class="newsletter">
+    <h2>Get 10% Off Your First Order</h2>
+    <p>Subscribe to our newsletter for exclusive offers, new product launches, and healthy recipes delivered straight to your inbox.</p>
+    <form>
+      <input type="email" placeholder="Enter your email">
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Aksvara Naturals. All rights reserved.</p>
+    <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </footer>
+
+  <!-- JS Scripts -->
+  <script src="js/main.js"></script>
+  <!-- Add any external JS libraries if needed -->
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Aksvara Naturals</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Checkout Specific Styles */
+    .checkout-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .checkout-section {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #2D5016;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #d4c4a8;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #8E6D5F;
+      box-shadow: 0 0 5px rgba(142, 109, 95, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Order Summary Styles */
+    .order-summary {
+      background: linear-gradient(135deg, #e8dfd0 0%, #d4c4a8 100%);
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #e8dfd0;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-details {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .item-qty {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .item-price {
+      font-weight: 600;
+      color: #2D5016;
+      min-width: 80px;
+      text-align: right;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      font-size: 0.95rem;
+    }
+
+    .summary-row.total {
+      border-top: 2px solid #d4c4a8;
+      padding-top: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2D5016;
+    }
+
+    /* Payment Radio Buttons */
+    .payment-options {
+      margin-bottom: 15px;
+    }
+
+    .radio-group {
+      margin-bottom: 12px;
+    }
+
+    .radio-group input[type="radio"] {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .radio-group label {
+      display: inline;
+      margin: 0;
+      cursor: pointer;
+      font-weight: normal;
+    }
+
+    /* Button Styles */
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #2D5016 0%, #4a7e2d 100%);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(45, 80, 22, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #3d6b1f 0%, #5a9d3f 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(45, 80, 22, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 12px;
+      background: white;
+      color: #2D5016;
+      border: 2px solid #2D5016;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: linear-gradient(135deg, #f5f0e8 0%, #e8dfd0 100%);
+      box-shadow: 0 4px 12px rgba(45, 80, 22, 0.15);
+    }
+
+    /* Checkbox Styles */
+    .checkbox-group {
+      margin: 15px 0;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .checkbox-group label {
+      display: inline;
+      margin: 0;
+      cursor: pointer;
+      font-weight: normal;
+    }
+
+    /* Empty Cart Message */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+
+    /* Success Message */
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      padding: 12px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      display: none;
+      border-left: 4px solid #28a745;
+    }
+
+    /* Error Message */
+    .error-message {
+      background: #f8d7da;
+      color: #721c24;
+      padding: 12px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      display: none;
+      border-left: 4px solid #dc3545;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .checkout-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <!-- Contact Info Bar -->
+    <div class="contact-bar">
+      <div class="contact-info">
+        <span class="contact-item">📧 <a href="mailto:info@aksvara.com">info@aksvara.com</a></span>
+        <span class="divider">|</span>
+        <span class="contact-item">📞 <a href="tel:+919876543210">+91 9876543210</a></span>
+      </div>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank" title="Facebook" class="social-link">f</a>
+        <a href="https://instagram.com" target="_blank" title="Instagram" class="social-link">📷</a>
+      </div>
+    </div>
+    
+    <div class="top-bar">
+      Proceed with Your Checkout
+    </div>
+    <nav>
+      <div class="logo">Aksvara Naturals</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="menu" id="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="checkout.html">Checkout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Checkout Section -->
+  <div class="checkout-container">
+    <!-- Left Column: Checkout Form -->
+    <div class="checkout-section">
+      <h2 class="section-title">Billing Information</h2>
+      
+      <form id="checkoutForm" onsubmit="handleCheckout(event)">
+        <!-- Success/Error Messages -->
+        <div class="success-message" id="successMsg">Order placed successfully!</div>
+        <div class="error-message" id="errorMsg"></div>
+
+        <!-- Personal Information -->
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+        </div>
+
+        <!-- Billing Address -->
+        <h3 class="section-title" style="margin-top: 30px;">Billing Address</h3>
+
+        <div class="form-group">
+          <label for="address">Street Address *</label>
+          <input type="text" id="address" name="address" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City *</label>
+            <input type="text" id="city" name="city" required>
+          </div>
+          <div class="form-group">
+            <label for="state">State *</label>
+            <input type="text" id="state" name="state" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="zipcode">Zip Code *</label>
+            <input type="text" id="zipcode" name="zipcode" required>
+          </div>
+          <div class="form-group">
+            <label for="country">Country *</label>
+            <input type="text" id="country" name="country" value="India" required>
+          </div>
+        </div>
+
+        <!-- Shipping Address -->
+        <div class="checkbox-group">
+          <input type="checkbox" id="sameAddress" name="sameAddress">
+          <label for="sameAddress">Shipping address same as billing</label>
+        </div>
+
+        <div id="shippingSection" style="display: none;">
+          <h3 class="section-title" style="margin-top: 30px;">Shipping Address</h3>
+          
+          <div class="form-group">
+            <label for="shipAddress">Street Address</label>
+            <input type="text" id="shipAddress" name="shipAddress">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="shipCity">City</label>
+              <input type="text" id="shipCity" name="shipCity">
+            </div>
+            <div class="form-group">
+              <label for="shipState">State</label>
+              <input type="text" id="shipState" name="shipState">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="shipZipcode">Zip Code</label>
+              <input type="text" id="shipZipcode" name="shipZipcode">
+            </div>
+            <div class="form-group">
+              <label for="shipCountry">Country</label>
+              <input type="text" id="shipCountry" name="shipCountry">
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <h3 class="section-title" style="margin-top: 30px;">Payment Method</h3>
+
+        <div class="payment-options">
+          <div class="radio-group">
+            <input type="radio" id="cod" name="paymentMethod" value="cod" checked>
+            <label for="cod">Cash on Delivery</label>
+          </div>
+          <div class="radio-group">
+            <input type="radio" id="creditCard" name="paymentMethod" value="creditCard">
+            <label for="creditCard">Credit/Debit Card</label>
+          </div>
+          <div class="radio-group">
+            <input type="radio" id="upi" name="paymentMethod" value="upi">
+            <label for="upi">UPI</label>
+          </div>
+        </div>
+
+        <!-- Card Details (Initially Hidden) -->
+        <div id="cardSection" style="display: none;">
+          <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="expiry">Expiry Date</label>
+              <input type="text" id="expiry" name="expiry" placeholder="MM/YY">
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" name="cvv" placeholder="123">
+            </div>
+          </div>
+        </div>
+
+        <!-- Terms & Conditions -->
+        <div class="checkbox-group" style="margin-top: 20px;">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">I agree to the terms and conditions</label>
+        </div>
+
+        <!-- Place Order Button -->
+        <button type="submit" class="btn-primary" style="margin-top: 20px;">Place Order</button>
+        <button type="button" class="btn-secondary" onclick="window.location.href='cart.html'">Return to Cart</button>
+      </form>
+    </div>
+
+    <!-- Right Column: Order Summary -->
+    <div class="checkout-section">
+      <h2 class="section-title">Order Summary</h2>
+
+      <div class="order-summary" id="orderSummary">
+        <div id="cartItems"></div>
+      </div>
+
+      <!-- Price Breakdown -->
+      <div style="background: #fdf7f0; padding: 20px; border-radius: 5px;">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span id="subtotal">₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping:</span>
+          <span id="shipping">Free</span>
+        </div>
+        <div class="summary-row">
+          <span>Tax (18% GST):</span>
+          <span id="tax">₹0</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total:</span>
+          <span id="total">₹0</span>
+        </div>
+      </div>
+
+      <!-- Discount Code -->
+      <div style="margin-top: 20px;">
+        <label for="discountCode">Have a promo code?</label>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <input type="text" id="discountCode" placeholder="Enter code" style="flex: 1;">
+          <button type="button" class="btn-primary" onclick="applyDiscount()" style="width: 100px;">Apply</button>
+        </div>
+      </div>
+
+      <!-- Estimated Delivery -->
+      <div style="margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 5px;">
+        <h4 style="color: #2e7d32; margin-bottom: 8px;">Estimated Delivery</h4>
+        <p style="color: #555; font-size: 0.95rem;">Your order will be delivered within 3-5 business days</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2026 Aksvara Naturals. All rights reserved.
+  </footer>
+
+  <script>
+    // Toggle shipping address section
+    document.getElementById('sameAddress').addEventListener('change', function() {
+      document.getElementById('shippingSection').style.display = this.checked ? 'none' : 'block';
+    });
+
+    // Toggle card details based on payment method
+    document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.getElementById('cardSection').style.display = 
+          this.value === 'creditCard' ? 'block' : 'none';
+      });
+    });
+
+    // Load cart from localStorage and display
+    function loadCartAndCalculate() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItemsDiv = document.getElementById('cartItems');
+
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = '<div class="empty-state">Your cart is empty</div>';
+        updateTotals(0);
+        return;
+      }
+
+      let html = '';
+      let subtotal = 0;
+
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        html += `
+          <div class="cart-item">
+            <div class="item-details">
+              <div class="item-name">${item.name}</div>
+              <div class="item-qty">Qty: ${item.quantity}</div>
+            </div>
+            <div class="item-price">₹${itemTotal}</div>
+          </div>
+        `;
+      });
+
+      cartItemsDiv.innerHTML = html;
+      updateTotals(subtotal);
+    }
+
+    // Calculate and display totals
+    function updateTotals(subtotal) {
+      const tax = Math.round(subtotal * 0.18);
+      const shipping = subtotal > 999 ? 0 : 50;
+      const total = subtotal + tax + shipping;
+
+      document.getElementById('subtotal').textContent = '₹' + subtotal;
+      document.getElementById('tax').textContent = '₹' + tax;
+      document.getElementById('shipping').textContent = shipping === 0 ? 'Free' : '₹' + shipping;
+      document.getElementById('total').textContent = '₹' + total;
+    }
+
+    // Apply discount code
+    function applyDiscount() {
+      const code = document.getElementById('discountCode').value.toUpperCase();
+      if (code === 'AKSVARA15') {
+        alert('15% discount applied!');
+        // Implement discount logic here
+      } else if (code === '') {
+        alert('Please enter a discount code');
+      } else {
+        alert('Invalid discount code');
+      }
+    }
+
+    // Handle checkout form submission
+    function handleCheckout(event) {
+      event.preventDefault();
+
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        address: document.getElementById('address').value,
+        city: document.getElementById('city').value,
+        state: document.getElementById('state').value,
+        zipcode: document.getElementById('zipcode').value,
+        country: document.getElementById('country').value,
+        paymentMethod: document.querySelector('input[name="paymentMethod"]:checked').value,
+        timestamp: new Date().toISOString()
+      };
+
+      // Save order to localStorage
+      localStorage.setItem('lastOrder', JSON.stringify(formData));
+
+      // Show success message
+      document.getElementById('successMsg').style.display = 'block';
+      document.getElementById('checkoutForm').style.display = 'none';
+
+      // Clear cart
+      localStorage.removeItem('cart');
+
+      // Redirect after 2 seconds
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      loadCartAndCalculate();
+    });
+  </script>
+</body>
+</html>
